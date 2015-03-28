@@ -1,5 +1,5 @@
 <?php
-//create_cat.php
+//category.php Lists topics
 include 'connect.php';
 include 'header.php';
  

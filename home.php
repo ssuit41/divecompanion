@@ -2,7 +2,6 @@
 //home.php
 //include 'connect.php';
 include 'header.php';
-
 echo '<h3>Recent Posts</h3>';
 //Insert code to display recent posts
 //Possibly as an option allow the user to select the forum category from a drop down box

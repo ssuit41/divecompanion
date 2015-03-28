@@ -1,5 +1,5 @@
 <?php
-//create_cat.php
+//forum.php lists categories
 include 'connect.php';
 include 'header.php';
  

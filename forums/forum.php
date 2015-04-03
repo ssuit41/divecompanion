@@ -1,7 +1,7 @@
 <?php
 //forum.php lists categories
-include 'connect.php';
-include 'header.php';
+include '../connect.php';
+include '../header.php';
  
 $sql = "SELECT
             cat_id,
@@ -45,5 +45,5 @@ else
     }
 }
  
-include 'footer.php';
+include '../footer.php';
 ?>

@@ -12,7 +12,7 @@
 <h1>Dive Companion</h1>
  <div id="nav">
     <a class="item" href="home.php">Home</a> -
-	<a class="item" href="forum/forum.php">Forum</a> -
+	<a class="item" href="forums/forum.php">Forum</a> -
 	<a class="item" href="account.php">Account</a>
 	<a class="item" href="wiki/addData.php">Add Data</a>
 </div>

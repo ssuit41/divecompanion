@@ -1,7 +1,10 @@
 <?php
 //topic.php displays the posts within a topic
-include 'connect.php';
-include 'header.php';
+include '../connect.php';
+include '../header.php';
+
+//generate the db connection
+$conn = connect();
 
 //select the topic based on $_GET['id']
 $sql = "SELECT
@@ -12,7 +15,7 @@ $sql = "SELECT
 		WHERE
 			topics.topic_id = " . mysql_real_escape_string($_GET['id']);
 			
-$result = mysql_query($sql);
+$result = $conn->query($sql);
 
 if(!$result)
 {
@@ -49,7 +52,7 @@ else
 			WHERE
 				posts.post_topic = " . mysql_real_escape_string($_GET['id']);
 				
-	$result = mysql_query($sql);
+	$result = $conn->query($sql);
 	
 	if(!$result)
 	{
@@ -57,7 +60,7 @@ else
 	}
 	else
 	{
-		while($row = mysql_fetch_assoc($result))
+		while($row = $result->fetch_assoc())
 		{
 			echo '<tr>';
 				echo '<td class="leftpart">';
@@ -77,6 +80,6 @@ else
 	}
 	}
 }
-include 'footer.php';
+include '../footer.php';
 ?>
 					

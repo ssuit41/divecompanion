@@ -3,6 +3,9 @@
 include 'connect.php';
 include 'header.php';
  
+//generate the db connection
+$conn = connect();
+ 
 echo '<h2>Create a topic</h2>';
 if($_SESSION['signed_in'] == false)
 {
@@ -23,7 +26,7 @@ else
                 FROM
                     categories";
          
-        $result = mysql_query($sql);
+        $result = $conn->query($sql);
          
         if(!$result)
         {
@@ -32,7 +35,7 @@ else
         }
         else
         {
-            if(mysql_num_rows($result) == 0)
+            if($result->num_rows == 0)
             {
                 //there are no categories, so a topic can't be posted
                 if($_SESSION['user_level'] == 1)
@@ -52,7 +55,7 @@ else
                     Category:';
                  
                 echo '<select name="topic_cat">';
-                    while($row = mysql_fetch_assoc($result))
+                    while($row = $result->fetch_assoc())
                     {
                         echo '<option value="' . $row['cat_id'] . '">' . $row['cat_name'] . '</option>';
                     }
@@ -68,7 +71,7 @@ else
     {
         //start the transaction
         $query  = "BEGIN WORK;";
-        $result = mysql_query($query);
+        $result = $conn->query($query);
          
         if(!$result)
         {
@@ -91,13 +94,13 @@ else
                                " . $_SESSION['user_id'] . "
                                )";
                       
-            $result = mysql_query($sql);
+            $result = $conn->query($sql);
             if(!$result)
             {
                 //something went wrong, display the error
                 echo 'An error occured while inserting your data. Please try again later.' . mysql_error();
                 $sql = "ROLLBACK;";
-                $result = mysql_query($sql);
+                $result = $conn->query($sql);
             }
             else
             {
@@ -116,7 +119,7 @@ else
                                   " . $topicid . ",
                                   " . $_SESSION['user_id'] . "
                             )";
-                $result = mysql_query($sql);
+                $result = $conn->query($sql);
                  
                 if(!$result)
                 {

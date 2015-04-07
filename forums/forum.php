@@ -3,6 +3,9 @@
 include '../connect.php';
 include '../header.php';
  
+//generate the db connection
+$conn = connect();
+ 
 $sql = "SELECT
             cat_id,
             cat_name,
@@ -10,7 +13,7 @@ $sql = "SELECT
         FROM
             categories";
  
-$result = mysql_query($sql);
+$result = $conn->query($sql);
  
 if(!$result)
 {
@@ -18,7 +21,7 @@ if(!$result)
 }
 else
 {
-    if(mysql_num_rows($result) == 0)
+    if($result->num_rows == 0)
     {
         echo 'No categories defined yet.';
     }
@@ -31,7 +34,7 @@ else
                 <th>Last topic</th>
               </tr>';
              
-        while($row = mysql_fetch_assoc($result))
+        while($row = $result->fetch_assoc())
         {              
             echo '<tr>';
                 echo '<td class="leftpart">';

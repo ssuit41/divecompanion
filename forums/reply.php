@@ -1,7 +1,10 @@
 <?php
 //create_cat.php
-include 'connect.php';
-include 'header.php';
+include '../connect.php';
+include '../header.php';
+ 
+//generate the db connection
+$conn = connect();
  
 if($_SERVER['REQUEST_METHOD'] != 'POST')
 {
@@ -28,7 +31,7 @@ else
                         " . mysql_real_escape_string($_GET['id']) . ",
                         " . $_SESSION['user_id'] . ")";
                          
-        $result = mysql_query($sql);
+        $result = $conn->query($sql);
                          
         if(!$result)
         {
@@ -41,5 +44,5 @@ else
     }
 }
  
-include 'footer.php';
+include '../footer.php';
 ?>

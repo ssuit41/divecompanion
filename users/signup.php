@@ -1,10 +1,11 @@
 <?php
 //signup.php
-include 'connect.php';
-include 'header.php';
+include '../header.php';
+include '../connect.php';
+
  
 echo '<h3>Sign up</h3>';
- 
+ $conn = connect();
 if($_SERVER['REQUEST_METHOD'] != 'POST')
 {
     /*the form hasn't been posted yet, display it
@@ -14,7 +15,7 @@ if($_SERVER['REQUEST_METHOD'] != 'POST')
         Password: <input type="password" name="user_pass">
         Password again: <input type="password" name="user_pass_check">
         E-mail: <input type="email" name="user_email">
-        <input type="submit" value="Add category" />
+        <input type="submit" value="Sign Up!" />
      </form>';
 }
 else
@@ -79,7 +80,7 @@ else
                         NOW(),
                         0)";
                          
-        $result = mysql_query($sql);
+        $result = $conn->query($sql);
         if(!$result)
         {
             //something went wrong, display the error
@@ -88,10 +89,10 @@ else
         }
         else
         {
-            echo 'Successfully registered. You can now <a href="signin.php">sign in</a> and start posting! :-)';
+            echo 'Successfully registered. You can now <a href="divecompanion/users/signin.php">sign in</a> and start posting! :-)';
         }
     }
 }
  
-include 'footer.php';
+include '../footer.php';
 ?>

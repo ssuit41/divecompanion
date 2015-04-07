@@ -1,3 +1,7 @@
+<?php
+//Start session
+session_start();
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,10 +15,10 @@
 <body>
 <h1>Dive Companion</h1>
  <div id="nav">
-    <a class="item" href="home.php">Home</a> -
-	<a class="item" href="forums/forum.php">Forum</a> -
-	<a class="item" href="account.php">Account</a>
-	<a class="item" href="wiki/addData.php">Add Data</a>
+    <a class="item" href="/divecompanion/home.php">Home</a> -
+	<a class="item" href="/divecompanion/forums/forum.php">Forum</a> -
+	<a class="item" href="/divecompanion/account.php">Account</a>
+	<a class="item" href="/divecompanion/wiki/addData.php">Add Data</a>
 </div>
 <div id="searchbar">
 	<form method="post" action="divesearch.php" id="searchform">
@@ -25,13 +29,13 @@
 </div>
 <div id="aside">
 	<?php
-	if($_SESSION['signed_in'])
+	if(isset($_SESSION['signed_in']) && $_SESSION['signed_in'])
 	{
 	echo 'Hello' . $_SESSION['user_name'] . '. Not you? <a href="signout.php">Sign out</a>';
 	}
 	else
 	{
-	echo '<a href="signin.php">Sign in</a> or <a href="Sign up">create an account</a>.';
+	echo '<a href="/divecompanion/users/signin.php">Sign in</a> or <a href="/divecompanion/users/signup.php">create an account</a>.';
 	}?>
 </div>
 

@@ -1,10 +1,10 @@
 <?php
 //signin.php
-include 'connect.php';
-include 'header.php';
+include '../header.php';
+include '../connect.php';
  
 echo '<h3>Sign in</h3>';
- 
+$conn = connect();
 //first, check if the user is already signed in. If that is the case, there is no need to display this page
 if(isset($_SESSION['signed_in']) && $_SESSION['signed_in'] == true)
 {
@@ -67,7 +67,7 @@ else
                     AND
                         user_pass = '" . sha1($_POST['user_pass']) . "'";
                          
-            $result = mysql_query($sql);
+            $result = $conn->query($sql);
             if(!$result)
             {
                 //something went wrong, display the error
@@ -79,7 +79,7 @@ else
                 //the query was successfully executed, there are 2 possibilities
                 //1. the query returned data, the user can be signed in
                 //2. the query returned an empty result set, the credentials were wrong
-                if(mysql_num_rows($result) == 0)
+                if($result->num_rows == 0)
                 {
                     echo 'You have supplied a wrong user/password combination. Please try again.';
                 }
@@ -89,19 +89,19 @@ else
                     $_SESSION['signed_in'] = true;
                      
                     //we also put the user_id and user_name values in the $_SESSION, so we can use it at various pages
-                    while($row = mysql_fetch_assoc($result))
+                    while($row = $result->fetch_assoc())
                     {
                         $_SESSION['user_id']    = $row['user_id'];
                         $_SESSION['user_name']  = $row['user_name'];
                         $_SESSION['user_level'] = $row['user_level'];
                     }
                      
-                    echo 'Welcome, ' . $_SESSION['user_name'] . '. <a href="index.php">Proceed to the forum overview</a>.';
+                    echo 'Welcome, ' . $_SESSION['user_name'] . '. <a href="divecompanion/home.php">Proceed to the home page</a>.';
                 }
             }
         }
     }
 }
  
-include 'footer.php';
+include '../footer.php';
 ?>

@@ -1,7 +1,11 @@
 <?php
 //category.php Lists topics
-include 'connect.php';
-include 'header.php';
+include '../header.php';
+include '../connect.php';
+
+ 
+ //generate the db connection
+$conn = connect();
  
 //first select the category based on $_GET['cat_id']
 $sql = "SELECT
@@ -13,7 +17,7 @@ $sql = "SELECT
         WHERE
             cat_id = " . mysql_real_escape_string($_GET['id']);
  
-$result = mysql_query($sql);
+$result = $conn->query($sql);
  
 if(!$result)
 {
@@ -81,5 +85,5 @@ else
     }
 }
  
-include 'footer.php';
+include '../footer.php';
 ?>

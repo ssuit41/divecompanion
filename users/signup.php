@@ -74,9 +74,9 @@ else
         //also notice the sha1 function which hashes the password
         $sql = "INSERT INTO
                     users(user_name, user_pass, user_email ,user_date, user_level)
-                VALUES('" . mysql_real_escape_string($_POST['user_name']) . "',
+                VALUES('" . mysqli_real_escape_string($conn, $_POST['user_name']) . "',
                        '" . sha1($_POST['user_pass']) . "',
-                       '" . mysql_real_escape_string($_POST['user_email']) . "',
+                       '" . mysqli_real_escape_string($conn, $_POST['user_email']) . "',
                         NOW(),
                         0)";
                          
@@ -89,7 +89,7 @@ else
         }
         else
         {
-            echo 'Successfully registered. You can now <a href="divecompanion/users/signin.php">sign in</a> and start posting! :-)';
+            echo 'Successfully registered. You can now <a href="/divecompanion/users/signin.php">sign in</a> and start posting! :-)';
         }
     }
 }

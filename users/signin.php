@@ -63,7 +63,7 @@ else
                     FROM
                         users
                     WHERE
-                        user_name = '" . mysql_real_escape_string($_POST['user_name']) . "'
+                        user_name = '" . mysqli_real_escape_string($conn, $_POST['user_name']) . "'
                     AND
                         user_pass = '" . sha1($_POST['user_pass']) . "'";
                          
@@ -96,7 +96,7 @@ else
                         $_SESSION['user_level'] = $row['user_level'];
                     }
                      
-                    echo 'Welcome, ' . $_SESSION['user_name'] . '. <a href="divecompanion/home.php">Proceed to the home page</a>.';
+                    echo 'Welcome, ' . $_SESSION['user_name'] . '. <a href="/divecompanion/home.php">Proceed to the home page</a>.';
                 }
             }
         }

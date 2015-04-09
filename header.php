@@ -10,7 +10,7 @@ session_start();
 	discussing various aspects of diving." />
     <meta name="keywords" content="dive, dive help, dive site, dive information, dive assistant" />
     <title>Dive Companion</title>
-    <link rel="stylesheet" href="style.css" type="text/css">
+    <link rel="stylesheet" href="/divecompanion/style.css" type="text/css">
 </head>
 <body>
 <h1>Dive Companion</h1>
@@ -19,10 +19,12 @@ session_start();
 	<a class="item" href="/divecompanion/forums/forum.php">Forum</a> -
 	<a class="item" href="/divecompanion/account.php">Account</a>
 	<a class="item" href="/divecompanion/wiki/addData.php">Add Data</a>
+	<a class="item" href="/divecompanion/forums/create_category.php">Create Category</a>
 </div>
 <div id="searchbar">
 	<form method="post" action="divesearch.php" id="searchform">
-	<input type="text" name="location">
+	<input type="number" name="lat">
+	<input type="number" name="long">
 	<input type="number" name="distance">
 	<input type="submit" name="submit" value="Search">
 	</form>
@@ -31,7 +33,7 @@ session_start();
 	<?php
 	if(isset($_SESSION['signed_in']) && $_SESSION['signed_in'])
 	{
-	echo 'Hello' . $_SESSION['user_name'] . '. Not you? <a href="signout.php">Sign out</a>';
+	echo 'Hello ' . $_SESSION['user_name'] . '. Not you? <a href="signout.php">Sign out</a>';
 	}
 	else
 	{

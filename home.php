@@ -1,6 +1,5 @@
 <?php
 //home.php
-//include 'connect.php';
 include 'header.php';
 echo '<h3>Recent Posts</h3>';
 //Insert code to display recent posts

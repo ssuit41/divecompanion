@@ -8,6 +8,7 @@ include '../connect.php';
 $conn = connect();
  
 //first select the category based on $_GET['cat_id']
+$escape = $conn->real_escape_string($_GET['id']);
 $sql = "SELECT
             cat_id,
             cat_name,
@@ -15,29 +16,31 @@ $sql = "SELECT
         FROM
             categories
         WHERE
-            cat_id = " . mysql_real_escape_string($_GET['id']);
+            cat_id = '$escape'";
  
 $result = $conn->query($sql);
  
 if(!$result)
 {
-    echo 'The category could not be displayed, please try again later.' . mysql_error();
+    echo 'The category could not be displayed, please try again later.' . $conn->error;
 }
 else
 {
-    if(mysql_num_rows($result) == 0)
+    if($result->num_rows == 0)
     {
         echo 'This category does not exist.';
+		echo "$escape";
     }
     else
     {
         //display category data
-        while($row = mysql_fetch_assoc($result))
+        while($row = $result->fetch_assoc())
         {
-            echo '<h2>Topics in '' . $row['cat_name'] . '' category</h2>';
+            echo '<h2>Topics in ' . $row['cat_name'] . ' category</h2>';
         }
      
         //do a query for the topics
+		$escape = $conn->real_escape_string($_GET['id']);
         $sql = "SELECT 
                     topic_id,
                     topic_subject,
@@ -46,19 +49,19 @@ else
                 FROM
                     topics
                 WHERE
-                    topic_cat = " . mysql_real_escape_string($_GET['id']);
+                    topic_cat = '$escape'";
          
-        $result = mysql_query($sql);
+        $result = $conn->query($sql);
          
         if(!$result)
         {
-            echo 'The topics could not be displayed, please try again later.';
+            echo 'The topics could not be displayed, please try again later.' . $conn->error;
         }
         else
         {
-            if(mysql_num_rows($result) == 0)
+            if($result->num_rows == 0)
             {
-                echo 'There are no topics in this category yet.';
+                echo 'There are no topics in this category yet. Would you like to <a href="create_topic.php?id=' . $escape . '"> create one</a>';
             }
             else
             {
@@ -69,7 +72,7 @@ else
                         <th>Created at</th>
                       </tr>';
                      
-                while($row = mysql_fetch_assoc($result))
+                while($row = $result->fetch_assoc())
                 {              
                     echo '<tr>';
                         echo '<td class="leftpart">';

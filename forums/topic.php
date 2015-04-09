@@ -7,36 +7,40 @@ include '../header.php';
 $conn = connect();
 
 //select the topic based on $_GET['id']
+$escape = $conn->real_escape_string($_GET['id']);
 $sql = "SELECT
 			topic_id,
 			topic_subject
 		FROM
 			topics
 		WHERE
-			topics.topic_id = " . mysql_real_escape_string($_GET['id']);
+			topics.topic_id = '$escape'";
 			
 $result = $conn->query($sql);
 
 if(!$result)
 {
-	echo 'The topic could not be displayed, please try again later.' . mysql_error();
+	echo 'The topic could not be displayed, please try again later.' . $conn->error;
 }
 else
 {
-	if(mysql_num_rows($result) == 0)
+	if($result->num_rows == 0)
 	{
 		echo 'This topic does not exist.';
 	}
 	else
 	{
 		//Display subject
+		$row = $result->fetch_assoc();
 		echo '<table border="1">
 			<tr>
-				<th> ''. $0['topic_subject'] . '' </th>
+				<th> ' . $row['topic_subject'] . ' </th>
 			</tr>';
 			
 	//query for posts
+	$escape = $conn->real_escape_string($_GET['id']);
 	$sql = "SELECT
+				posts.post_id,
 				posts.post_topic,
 				posts.post_content,
 				posts.post_date,
@@ -50,7 +54,7 @@ else
 			ON
 				posts.post_by = users.user_id
 			WHERE
-				posts.post_topic = " . mysql_real_escape_string($_GET['id']);
+				posts.post_topic = '$escape'";
 				
 	$result = $conn->query($sql);
 	
@@ -64,12 +68,19 @@ else
 		{
 			echo '<tr>';
 				echo '<td class="leftpart">';
-					echo '<tr>' . $row['users.user_name'] . ' </tr>';
-					echo '<tr>' . $row['posts.post_date'] . ' </tr>';
+					echo '<ul>';
+					echo '<li>' . $row['user_name'] . '</li>';
+					echo '<li>' . $row['post_date'] . '</li>';
+					echo '</ul>';
 				echo '</td>';
 				echo '<td class="rightpart">';
-					echo '<tr>' . $row['posts.post_content'] . ' </tr>';
-					echo '</tr>';
+					echo '<ul>';
+					echo '<li>' . $row['post_content'] . ' </li>';
+					echo '<li></li>';
+					echo '<li><a href="reply.php?id=' . $row['post_id'] . '"> Reply </a></li>';
+					echo '</ul>';
+				echo '</td>';
+			echo '</tr>';
 		}
 		/*
 		<form method="post" action="reply.php?id=5">
@@ -78,6 +89,7 @@ else
 		</form>
 		*/
 	}
+	echo '</table>';
 	}
 }
 include '../footer.php';

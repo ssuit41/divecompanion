@@ -34,7 +34,7 @@ else
 		$row = $result->fetch_assoc();
 		echo '<table border="1">
 			<tr>
-				<th> ' . $row['topic_subject'] . ' </th>
+				<th colspan="2"> ' . $row['topic_subject'] . ' </th>
 			</tr>';
 			
 	//query for posts
@@ -67,18 +67,13 @@ else
 		while($row = $result->fetch_assoc())
 		{
 			echo '<tr>';
-				echo '<td class="leftpart">';
-					echo '<ul>';
-					echo '<li>' . $row['user_name'] . '</li>';
-					echo '<li>' . $row['post_date'] . '</li>';
-					echo '</ul>';
-				echo '</td>';
 				echo '<td class="rightpart">';
-					echo '<ul>';
-					echo '<li>' . $row['post_content'] . ' </li>';
-					echo '<li></li>';
-					echo '<li><a href="reply.php?id=' . $row['post_id'] . '"> Reply </a></li>';
-					echo '</ul>';
+					echo '<h3>' . $row['user_name'] . '</h3>';
+					echo '<h3>' . $row['post_date'] . '</h3>';
+				echo '</td>';
+				echo '<td class="leftpart">';
+					echo '<h3>' . $row['post_content'] . ' </h3>';
+					echo '<h3><a href="reply.php?id=' . $row['post_id'] . '"> Reply </a></h3>';
 				echo '</td>';
 			echo '</tr>';
 		}

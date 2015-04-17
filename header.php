@@ -14,11 +14,11 @@ session_start();
 </head>
 <body>
 <h1>Dive Companion</h1>
- <div id="nav">
+ <div id="menu">
     <a class="item" href="/divecompanion/home.php">Home</a> -
 	<a class="item" href="/divecompanion/forums/forum.php">Forum</a> -
-	<a class="item" href="/divecompanion/account.php">Account</a>
-	<a class="item" href="/divecompanion/wiki/addData.php">Add Data</a>
+	<a class="item" href="/divecompanion/account.php">Account</a> -
+	<a class="item" href="/divecompanion/wiki/addData.php">Add Data</a> -
 	<a class="item" href="/divecompanion/forums/create_category.php">Create Category</a>
 </div>
 <div id="searchbar">
@@ -33,7 +33,7 @@ session_start();
 	<?php
 	if(isset($_SESSION['signed_in']) && $_SESSION['signed_in'])
 	{
-	echo 'Hello ' . $_SESSION['user_name'] . '. Not you? <a href="signout.php">Sign out</a>';
+	echo 'Hello ' . $_SESSION['user_name'] . '. Not you? <a href="/divecompanion/users/signout.php">Sign out</a>';
 	}
 	else
 	{

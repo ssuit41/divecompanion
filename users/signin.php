@@ -96,7 +96,7 @@ else
                         $_SESSION['user_level'] = $row['user_level'];
                     }
                      
-                    echo 'Welcome, ' . $_SESSION['user_name'] . '. <a href="/divecompanion/home.php">Proceed to the home page</a>.';
+                    header('Location: /divecompanion/home.php');
                 }
             }
         }

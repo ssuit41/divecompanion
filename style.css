@@ -60,7 +60,7 @@ table a:hover {
 }
  
 th {
-    background-color: #B40E1F;
+    background-color: #00728B;
     color: #F0F0F0;
 }
  
@@ -105,6 +105,9 @@ h3 {margin: 0; padding: 0;}
 #footer {
     font-size: 65%;
     padding: 3px 0 0 0;
+	position:fixed;
+	bottom:0;
+	left: 50%;
 }
  
 .topic-post {

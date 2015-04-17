@@ -22,7 +22,7 @@ session_start();
 	<a class="item" href="/divecompanion/forums/create_category.php">Create Category</a>
 </div>
 <div id="searchbar">
-	<form method="post" action="divesearch.php" id="searchform">
+	<form method="post" action="/divecompanion/wiki/diveSearch.php" id="searchform">
 	<input type="number" name="lat">
 	<input type="number" name="long">
 	<input type="number" name="distance">

@@ -69,10 +69,10 @@ else
 			echo '<tr>';
 				echo '<td class="rightpart">';
 					echo '<h3>' . $row['user_name'] . '</h3>';
-					echo '<h3>' . $row['post_date'] . '</h3>';
+					echo $row['post_date'];
 				echo '</td>';
 				echo '<td class="leftpart">';
-					echo '<h3>' . $row['post_content'] . ' </h3>';
+					echo $row['post_content'];
 					echo '<h3><a href="reply.php?id=' . $row['post_id'] . '"> Reply </a></h3>';
 				echo '</td>';
 			echo '</tr>';

@@ -21,7 +21,7 @@ echo "\n";
 
 $sql = "SELECT
 			diveSite,
-			zipCode,
+			zipCode
 		FROM
 			divesite
 		WHERE

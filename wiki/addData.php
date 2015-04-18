@@ -1,7 +1,7 @@
 <?php
 
-include '../connect.php';
-include '../header.php';
+include_once '../connect.php';
+include_once '../header.php';
 
 
 if(!(isset($_SESSION['signed_in']) && $_SESSION['signed_in']))
@@ -19,7 +19,7 @@ else
 		echo '<h2>Please enter an area locator.</h2>';
 		
 		//need to query user for dive site info
-		echo '<form method="prompt" action="results.php">
+		echo '<form action="results.php" method="get">
 			Zip Code: <input type="text" name="zip" />
 			City: <input type="text" name="city" /></textarea>
 			<input type="submit" value="Enter" />

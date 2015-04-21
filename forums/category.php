@@ -79,10 +79,12 @@ else
                             echo '<h3><a href="topic.php?id=' . $row['topic_id'] . '">' . $row['topic_subject'] . '</a><h3>';
                         echo '</td>';
                         echo '<td class="rightpart">';
-                            echo date('d-m-Y', strtotime($row['topic_date']));
+							echo date('m-d-Y g:i A', strtotime($row['topic_date']));
                         echo '</td>';
                     echo '</tr>';
                 }
+				echo '</table>';
+				echo '<a href="create_topic.php?id=' . $escape . '">New Topic</a>';
             }
         }
     }

@@ -54,7 +54,9 @@ else
 			ON
 				posts.post_by = users.user_id
 			WHERE
-				posts.post_topic = '$escape'";
+				posts.post_topic = '$escape'
+			ORDER BY
+				posts.post_date ASC";
 				
 	$result = $conn->query($sql);
 	

@@ -49,7 +49,9 @@ else
                 FROM
                     topics
                 WHERE
-                    topic_cat = '$escape'";
+                    topic_cat = '$escape'
+				ORDER BY
+					topic_date DESC";
          
         $result = $conn->query($sql);
          
@@ -69,7 +71,7 @@ else
                 echo '<table border="1">
                       <tr>
                         <th>Topic</th>
-                        <th>Created at</th>
+                        <th>Last Post Time</th>
                       </tr>';
                      
                 while($row = $result->fetch_assoc())

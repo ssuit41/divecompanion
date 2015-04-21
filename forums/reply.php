@@ -33,12 +33,18 @@ else
                           post_by)
                 VALUES ('" . $_POST['reply-content'] . "',
                         NOW(),
-                        " . mysql_real_escape_string($_GET['id']) . ",
+                        " . $conn->real_escape_string($_GET['id']) . ",
                         " . $_SESSION['user_id'] . ")";
                          
         $result = $conn->query($sql);
+		
+		$sql = 'UPDATE topics
+				SET topic_date=NOW()
+				WHERE topic_id=' . $conn->real_escape_string($_GET['id']) . '';
+				
+		$result2 = $conn->query($sql);
                          
-        if(!$result)
+        if(!$result && !$result2)
         {
             echo 'Your reply has not been saved, please try again later.';
         }

@@ -8,8 +8,13 @@ $conn = connect();
  
 if($_SERVER['REQUEST_METHOD'] != 'POST')
 {
-    //someone is calling the file directly, which we don't want
-    echo 'This file cannot be called directly.';
+    echo 'Reply To:';
+	echo $_GET['content'];
+	echo '<br>';		
+	echo '<form method="post" action="">
+		<textarea name="reply-content"></textarea>
+		<input type="submit" value="Submit reply" />
+		</form>';
 }
 else
 {
@@ -28,18 +33,24 @@ else
                           post_by)
                 VALUES ('" . $_POST['reply-content'] . "',
                         NOW(),
-                        " . mysql_real_escape_string($_GET['id']) . ",
+                        " . $conn->real_escape_string($_GET['id']) . ",
                         " . $_SESSION['user_id'] . ")";
                          
         $result = $conn->query($sql);
+		
+		$sql = 'UPDATE topics
+				SET topic_date=NOW()
+				WHERE topic_id=' . $conn->real_escape_string($_GET['id']) . '';
+				
+		$result2 = $conn->query($sql);
                          
-        if(!$result)
+        if(!$result && !$result2)
         {
             echo 'Your reply has not been saved, please try again later.';
         }
         else
         {
-            echo 'Your reply has been saved, check out <a href="topic.php?id=' . htmlentities($_GET['id']) . '">the topic</a>.';
+			header('Location: /divecompanion/forums/topic.php?id=' . $_GET['id'] . '');
         }
     }
 }

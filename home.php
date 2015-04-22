@@ -4,7 +4,7 @@ include 'connect.php';
 include 'header.php';
 
 $conn = connect();
-echo '<h3>Recent Posts</h3>';
+echo '<h3>Recent Threads</h3>';
 //Shows the 5 most recent posts in the format of Cat Name - Topic w/ link including the time
 $sql = "SELECT 
                     t.topic_id,

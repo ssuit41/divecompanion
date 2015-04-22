@@ -54,7 +54,9 @@ else
 			ON
 				posts.post_by = users.user_id
 			WHERE
-				posts.post_topic = '$escape'";
+				posts.post_topic = '$escape'
+			ORDER BY
+				posts.post_date ASC";
 				
 	$result = $conn->query($sql);
 	
@@ -69,20 +71,15 @@ else
 			echo '<tr>';
 				echo '<td class="rightpart">';
 					echo '<h3>' . $row['user_name'] . '</h3>';
-					echo $row['post_date'];
+					echo date('m-d-Y g:i A', strtotime($row['post_date']));
 				echo '</td>';
 				echo '<td class="leftpart">';
 					echo $row['post_content'];
-					echo '<h3><a href="reply.php?id=' . $row['post_id'] . '"> Reply </a></h3>';
+					if(isset($_SESSION['signed_in']) && $_SESSION['signed_in'])
+						echo '<h3><a href="reply.php?id=' . $row['post_topic'] . '&content=' . $row['post_content'] . '"> Reply </a></h3>';
 				echo '</td>';
 			echo '</tr>';
 		}
-		/*
-		<form method="post" action="reply.php?id=5">
-			<textarea name="reply-content"></textarea>
-			<input type="submit" value="Submit reply" />
-		</form>
-		*/
 	}
 	echo '</table>';
 	}

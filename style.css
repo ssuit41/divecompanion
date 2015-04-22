@@ -1,6 +1,8 @@
 body {
     background-color: #b8dfd8;
-    text-align: center;         /* make sure IE centers the page too */
+    text-align: center;
+    overflow-x: hidden;
+    /* make sure IE centers the page too */
 }
  
 #content {
@@ -10,7 +12,7 @@ body {
     font-family: Arial;
     padding: 20px 30px;
     text-align: left;
-    width: 100%;                /* fill up the entire div */
+                 /* fill up the entire div */
 }
  
 #menu {
@@ -36,7 +38,7 @@ body {
  
  #section{
 	float: left;
-	margin: 0 1.5%;
+	margin: 0 1.5% 100px;
 	width: 80%;
 }
 

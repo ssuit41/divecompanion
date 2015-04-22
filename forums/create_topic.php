@@ -10,7 +10,7 @@ echo '<h2>Create a topic</h2>';
 if(!(isset($_SESSION['signed_in']) && $_SESSION['signed_in']))
 {
     //the user is not signed in
-    echo 'Sorry, you have to be <a href="/forum/signin.php">signed in</a> to create a topic.';
+    echo 'Sorry, you have to be <a href="/divecompanion/users/signin.php">signed in</a> to create a topic.';
 }
 else
 {

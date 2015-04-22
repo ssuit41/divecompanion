@@ -4,7 +4,8 @@
 function connect () {
 	$server = 'localhost';
 	$username   = 'root';
-	$password   = 'nW9tZZeN8L9e4FQ2';
+	$password   = '';
+	//$password   = ''; //for Claudius
 	$database   = 'exforum';
 	 
 	$conn = new mysqli($server, $username, $password, $database);

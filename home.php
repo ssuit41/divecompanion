@@ -43,7 +43,11 @@ else
         {              
             echo '<tr>';
             echo '<td class="leftpart">';
+<<<<<<< HEAD
                 echo '<h3>' . $row['cat_name'] . ' - <a href="forums/topic.php?id=' . $row['topic_id'] . '">' . $row['topic_subject'] . '</a><h3>';
+=======
+                echo '<h3>' . $row['cat_name'] . ' - <a href="/divecompanion/forums/topic.php?id=' . $row['topic_id'] . '">' . $row['topic_subject'] . '</a><h3>';
+>>>>>>> origin/master
             echo '</td>';
             echo '<td class="rightpart">';
 				echo date('m-d-Y g:i A', strtotime($row['topic_date']));
@@ -88,7 +92,10 @@ else
 			}
 			echo '</table>';
 }
+<<<<<<< HEAD
 //>>>>>>> origin/master
+=======
+>>>>>>> origin/master
 
 include 'footer.php';
 ?>

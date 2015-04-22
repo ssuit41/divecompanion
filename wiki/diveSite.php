@@ -5,6 +5,9 @@ include '../header.php';
 $conn = connect();
 //diveSite.php is loaded with diveSite.php?id=? where ? represents the subsitenum.
 $escape = $conn->real_escape_string($_GET['id']);
+
+$sql = "UPDATE divelog set logNumber = logNumber+1 WHERE subSiteNum = $escape";
+$conn->query($sql);
 $sql = "SELECT
 			s.subSiteName,
 			s.siteInstruction,

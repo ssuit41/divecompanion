@@ -14,7 +14,7 @@ $sql = "SELECT
 		FROM
 			divesite
 		WHERE
-			divesite.divesite = '$escape'";
+			divesite.diveSiteNum = '$escape'";
 			
 $result = $conn->query($sql);
 
@@ -37,22 +37,21 @@ else
 		$diveSiteNum = $row['diveSiteNum'];
 		$addressnum = $row['addressNumber'];
 		$zip = $row['zipCode'];
-		
+
 		$sql = "SELECT
 			siteDetails,
-			siteInstructions,
+			siteInstruction,
 			subSiteName,
 			subSiteNum
 		FROM
 			divesitedetails
 		WHERE
-			divesitedetails.diveSiteNum = '$diveSiteNum'";
-			
+			divesitedetails.diveSiteNum = $diveSiteNum";
 		$result = $conn->query($sql);
 		$row = $result->fetch_assoc();
 		
 		$siteDetails = $row['siteDetails'];
-		$siteInstructions = $row['siteInstructions'];
+		$siteInstructions = $row['siteInstruction'];
 		$subSiteNum = $row['subSiteNum'];
 		$subSiteName = $row['subSiteName'];
 

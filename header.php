@@ -115,9 +115,9 @@ session_start();
 </div>
 <div id="searchbar">
 	<form method="post" action="/divecompanion/wiki/diveSearch.php" id="searchform">
-	<input type="number" name="lat">
-	<input type="number" name="long">
-	<input type="number" name="distance">
+	Latitude: <input type="number" name="lat">
+	Longitude: <input type="number" name="long">
+	Distance: <input type="number" name="distance">
 	<input type="submit" name="submit" value="Search">
 	</form>
 </div>

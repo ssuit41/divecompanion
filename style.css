@@ -1,6 +1,10 @@
 body {
     background-color: #b8dfd8;
+<<<<<<< HEAD
    
+=======
+    text-align: center;
+>>>>>>> origin/master
     overflow-x: hidden;
     /* make sure IE centers the page too */
 }

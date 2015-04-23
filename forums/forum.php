@@ -5,11 +5,22 @@ include '../header.php';
  
 //generate the db connection
 $conn = connect();
+<<<<<<< HEAD
 echo '<div class="grid_12">
             <div class="box round first fullpage">
                 <h2>
                   forums</h2>
                 <div class="block ">';
+=======
+ /*
+$sql = "SELECT
+            cat_id,
+            cat_name,
+            cat_description
+        FROM
+            categories";
+	*/		
+>>>>>>> origin/master
 $sql = "SELECT 
 			c.cat_id,
 			c.cat_name,
@@ -55,7 +66,11 @@ else
                 echo '<td>';
                     echo '<a href="category.php?id=' . $row['cat_id'] . '">' . $row['cat_name'] . '</a></br>' . $row['cat_description'];
                 echo '</td>';
+<<<<<<< HEAD
                 echo '<td>';
+=======
+                echo '<td class="rightpart">';
+>>>>>>> origin/master
                 echo '<a href="topic.php?id=' . $row['topic_id'] . '">' . $row['topic_subject'] . '</a> at <br>'; 
 				echo date('m-d-Y g:i A', strtotime($row['topic_date']));
                 echo '</td>';

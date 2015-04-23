@@ -71,6 +71,7 @@ else
             else
             {
                 //prepare the table
+<<<<<<< HEAD
                 echo '<table class="data display datatable" id="example">
 					<thead>
 						<tr>
@@ -79,6 +80,13 @@ else
 						</tr>
 					</thead>
 					<tbody>';
+=======
+                echo '<table border="1">
+                      <tr>
+                        <th>Topic</th>
+                        <th>Last Post Time</th>
+                      </tr>';
+>>>>>>> origin/master
                      
                 while($row = $result->fetch_assoc())
                 {              
@@ -86,7 +94,11 @@ else
                         echo '<td>';
                             echo '<a href="topic.php?id=' . $row['topic_id'] . '">' . $row['topic_subject'] . '</a>';
                         echo '</td>';
+<<<<<<< HEAD
                         echo '<td>';
+=======
+                        echo '<td class="rightpart">';
+>>>>>>> origin/master
 							echo date('m-d-Y g:i A', strtotime($row['topic_date']));
                         echo '</td>';
                     echo '</tr>';

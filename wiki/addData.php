@@ -22,8 +22,8 @@ else
 		//only implemented by zip code right now
 		//need to add additional locator options, but will cascade changes to results.php
 		echo '<p align="center">
-			<form action="results.php" method="get">
-			Zip Code: <input type="text" name="zip" />
+			<form action="results.php" method="post">
+			Zip Code: <input type="text" name="zip" >
 			<input type="submit" value="Enter" />
 			</form>
 			</p>';

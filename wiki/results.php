@@ -6,17 +6,24 @@ include_once '../header.php';
 //open database connection
 $conn = connect();
 //get zip code information from addData.php
-$zip = $_GET["zip"];
+$zip = $_POST["zip"];
 
 //perform query of database based on zip code
-$sql = "SELECT
-			diveSite,
-			zipCode
-		FROM
-			divesite
-		WHERE
-			zipCode = '$zip'";
-
+	$sql = "SELECT
+				divesitedetails.subSiteName,
+				divesitedetails.subSiteNum,
+				divesitedetails.diveSiteNum,
+				divesite.diveSite,
+				divesite.diveSiteNum,
+				divesite.zipCode
+			FROM
+				divesitedetails
+			LEFT JOIN
+				divesite
+			ON
+				divesitedetails.diveSiteNum = divesite.diveSiteNum
+			WHERE
+				divesite.zipCode = '$zip'";
 $result = $conn->query($sql);
 
 //database connection error
@@ -59,10 +66,10 @@ else
 				//this should link the user to existingsite.php where the information will be queried from the database
 				//and the user will have the option to add a new dive log to an existing site
 				//***NOTE*** existingsite.php has problems
-					echo '<a href="existingsite.php?id=' . $row['diveSite'] . '">' . $row['diveSite'] . '</a>';
+					echo '<h3><a href="existingsite.php?id=' . $row['subSiteNum'] . '">' . $row['subSiteName'] . '</a></h3>' . $row['diveSite'];
 				echo '</td>';
 				echo '<td class="rightpart">';
-					echo $zip;
+					echo $row['zipCode'];
 				echo '</td>';
 			echo '</tr>';
 		}

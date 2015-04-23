@@ -6,15 +6,15 @@ include_once '../header.php';
 //if user selects to enter new site, then prompt get form data
 if( $_POST['confirm'] == "Yes")
 {
-	echo '<form action="divelog.php" method="get">
+	echo '<form action="divelog.php" method="post">
 	<p align="left">
-	Site name:
+	Main site name:
 	&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-	<input type="text" name="divesite">
+	<input type="text" name="diveSite">
 	<br>
-	Address Number:
+	Sub site name:
 	&nbsp&nbsp&nbsp&nbsp
-	<input type="text" name="addressnum">
+	<input type="text" name="subSiteName">
 	<br>
 	Address:
 	&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
@@ -46,9 +46,9 @@ if( $_POST['confirm'] == "Yes")
 	<br>
 	Site Instructions:
 	&nbsp&nbsp&nbsp&nbsp&nbsp
-	<input type="text" name="instructions">
+	<input type="text" name="siteInstruction">
 	<br>
-	Site Details:<textarea name="details" rows="3" columns="40"></textarea>
+	Site Details:<textarea name="siteDetails" rows="3" columns="40"></textarea>
 	<br>
 	<input type="submit" value="Enter">
 	</p>

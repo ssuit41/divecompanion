@@ -7,18 +7,21 @@ include_once '../header.php';
 $conn = connect();
 
 //get form information and store in variables
-$current = $_GET["current"];
-$date = $_GET["date"];
-$depth = $_GET["depth"];
-$temperature = $_GET["temperature"];
-$visibility = $_GET["visibility"];
-$username = $_GET["username"];
-$userid = $_GET["userid"];
+$current = $_POST["current"];
+$depth = $_POST["depth"];
+$temperature = $_POST["temperature"];
+$visibility = $_POST["visibility"];
+$username = $_SESSION["user_name"];
+$subSiteNum = $_POST["subSiteNum"];
+
+$sql = "SELECT * FROM users WHERE user_name = '$username'";
+$result = $conn->query($sql);
+$row = $result->fetch_assoc();
+$userid = $row['user_id'];
 
 //insert form information into divelog table
-//***NOTE*** AGAIN USING ZEROS TO MAKE UP FOR UNCERTAINTY WITH DATABASE SCHEMA/WORKINGS
-$sql = "INSERT INTO divelog( user_id, subSiteNum, lognumber, date, temperature, maxDepth, current, visibility ) 
-	VALUES ( '$userid', '0', '0', '$date', '$temperature', '$depth', '$current', '$visibility' )";
+$sql = "INSERT INTO divelog( user_id, subSiteNum, date, temperature, maxDepth, current, visibility ) 
+	VALUES ( '$userid', '$subSiteNum', NOW(), '$temperature', '$depth', '$current', '$visibility' )";
 $conn->query($sql);
 
 //inform user of successful dive log creation

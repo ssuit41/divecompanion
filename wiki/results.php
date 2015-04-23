@@ -5,6 +5,12 @@ include_once '../header.php';
 
 //open database connection
 $conn = connect();
+
+echo '<div class="grid_12">
+            <div class="box round first fullpage">
+                <h2>
+                  Results</h2>
+                <div class="block ">';
 //get zip code information from addData.php
 $zip = $_GET["zip"];
 
@@ -68,13 +74,16 @@ else
 		}
 		
 		//give the user the option to add a new dive site if the one they are looking for is not listed in this zip code
-		echo '<form action="newsite.php" method="post">
-		Not the site you wanted? Would you like to add a new site?
-		<input type="submit" name="confirm" value="Yes">
-		<input type="submit" name="confirm" value="No">
+		echo '<form action="newsite.php" method="post"><table class="form">
+          <tr>
+		  <td><label>Not the site you wanted? Would you like to add a new site?</label></td>
+		  <td> <input class="btn btn-blue" type="submit" name="confirm" value="Yes">
+		       <input class="btn btn-blue" type="submit" name="confirm" value="No"></td>
+		  </tr>
+		
 		</form>';
 	}
 }
-
+echo '</table></div></div></div>';
 include_once '../footer.php';
 ?>

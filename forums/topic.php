@@ -5,7 +5,8 @@ include '../header.php';
 
 //generate the db connection
 $conn = connect();
-
+ echo '<div class="grid_12">
+            <div class="box round first fullpage">';
 //select the topic based on $_GET['id']
 $escape = $conn->real_escape_string($_GET['id']);
 $sql = "SELECT
@@ -32,11 +33,19 @@ else
 	{
 		//Display subject
 		$row = $result->fetch_assoc();
-		echo '<table border="1">
-			<tr>
-				<th colspan="2"> ' . $row['topic_subject'] . ' </th>
-			</tr>';
+		echo '
+				<h2> ' . $row['topic_subject'] . ' </h2>';
 			
+		echo '<div class="block ">';	
+		
+		echo '<table class="data display datatable" id="example">
+					<thead>
+						<tr>
+							 <th>Topic</th>
+							  <th>Last Post Time</th>
+						</tr>
+					</thead>
+					<tbody>';
 	//query for posts
 	$escape = $conn->real_escape_string($_GET['id']);
 	$sql = "SELECT
@@ -54,7 +63,9 @@ else
 			ON
 				posts.post_by = users.user_id
 			WHERE
-				posts.post_topic = '$escape'";
+				posts.post_topic = '$escape'
+			ORDER BY
+				posts.post_date ASC";
 				
 	$result = $conn->query($sql);
 	
@@ -67,26 +78,23 @@ else
 		while($row = $result->fetch_assoc())
 		{
 			echo '<tr>';
-				echo '<td class="rightpart">';
-					echo '<h3>' . $row['user_name'] . '</h3>';
-					echo $row['post_date'];
+				echo '<td>';
+					echo '' . $row['user_name'] . '</br>';
+					echo date('m-d-Y g:i A', strtotime($row['post_date']));
 				echo '</td>';
-				echo '<td class="leftpart">';
+				echo '<td>';
 					echo $row['post_content'];
-					echo '<h3><a href="reply.php?id=' . $row['post_id'] . '"> Reply </a></h3>';
+					if(isset($_SESSION['signed_in']) && $_SESSION['signed_in'])
+						echo '<a href="reply.php?id=' . $row['post_topic'] . '&content=' . $row['post_content'] . '"></br> Reply </a>';
 				echo '</td>';
 			echo '</tr>';
 		}
-		/*
-		<form method="post" action="reply.php?id=5">
-			<textarea name="reply-content"></textarea>
-			<input type="submit" value="Submit reply" />
-		</form>
-		*/
 	}
-	echo '</table>';
+	echo '</tbody></table>';
 	}
 }
+echo '</div></div></div> <div class="clear">
+        </div>';
 include '../footer.php';
 ?>
 					

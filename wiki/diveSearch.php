@@ -3,7 +3,11 @@ include '../connect.php';
 include '../header.php';
 
 $conn = connect();
-
+echo '<div class="grid_12">
+            <div class="box round first fullpage">
+                <h2>
+                  Recent Posts</h2>
+                <div class="block ">';
 if($_SERVER['REQUEST_METHOD'] != 'POST')
 	echo 'This file cannot be called directly.';
 else
@@ -47,11 +51,14 @@ else
 			echo 'There are no results in range.';
 		else
 		{
-			echo '<table border="1">
-					<tr>
-						<th>Site Name </th>
-						<th>Distance </th>
-					</tr>';
+			echo '<table class="data display datatable" id="example">
+					<thead>
+						<tr>
+							 <th>Site Name</th>
+							  <th>Distance</th>
+						</tr>
+					</thead>
+					<tbody>';
 					
 			while($row = $result->fetch_assoc())
 			{
@@ -61,10 +68,10 @@ else
 						<td>' . $row['distance'] . '</td>
 					  </tr>';
 			}
-			echo '</table>';
+			echo '<tbody></table>';
 		}
 	}
 }
-
+echo '</div></div></div>';
 include '../footer.php';
 ?>

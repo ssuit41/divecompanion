@@ -5,7 +5,11 @@ include_once '../header.php';
 
 //database connection
 $conn = connect();
-
+echo '<div class="grid_12">
+            <div class="box round first fullpage">
+                <h2>
+                 </h2>
+                <div class="block ">';
 //get form information for variables
 $zip = $_GET["zip"];
 $city = $_GET["city"];
@@ -47,28 +51,41 @@ $userid = $row['user_id'];
 //prompt user for input of dive log information
 //***NOTE*** PASSING OF USER_NAME AND USER_ID AS HIDDEN OBJECTS
 echo '<form action="divelogsuccess.php" method="get">
-<p align="left">
-Current:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-<input type="text" name="current">
-<br>
-Date:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-<input type="text" name="date">
-<br>
-Max Depth:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-<input type="text" name="depth">
-<br>
-Temperature:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-<input type="text" name="temperature">
-<br>
-Visibility:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-<input type="text" name="visibility">
-<br>
-<input type="hidden" id="username" name="username" value=$username>
-<input type="hidden" id="userid" name="userid" value=$userid>
-<br>
-<input type="submit" value="Enter">
-</p>
-</form>';
+<table class="form">
+          <tr>
+		  <td><label>Current</label></td>
+		  <td> <input class="medium" type="text" name="current" /></td>
+		  </tr>
+		  
+		  <tr>
+		  <td><label>Date</label></td>
+		  <td> <input class="medium" type="text" name="date" /></td>
+		  </tr>
+		  
+		  <tr>
+		  <td><label>Max Depth</label></td>
+		  <td> <input class="medium" type="text" name="depth" /></td>
+		  </tr>
+		  
+		   <tr>
+		  <td><label>Temperature</label></td>
+		  <td> <input class="medium" type="text" name="temperature" /></td>
+		  </tr>
+		  
+		  <tr>
+		  <td><label>Visibility</label></td>
+		  <td> <input class="medium" type="text" name="visibility" /></td>
+		  </tr>
+		  <input type="hidden" id="username" name="username" value=$username>
+          <input type="hidden" id="userid" name="userid" value=$userid>
+     
+	      <tr>
+             <td colspan="2" align="center"> <input class="btn btn-blue" type="submit" value="Enter" /></td>
+	     </tr>
+	      </table>
+        </form>';
 
+
+echo '</div></div></div>';
 include_once '../footer.php';
 ?>

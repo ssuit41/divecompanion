@@ -1,15 +1,33 @@
-<?php
-//create_cat.php
+<?php 
+ob_start();
 include '../connect.php';
 include '../header.php';
  
+//create_cat.php
 //generate the db connection
 $conn = connect();
- 
+ echo '<div class="grid_12">
+            <div class="box round first fullpage">
+                <h2>
+                 Replay</h2>
+                <div class="block ">';
 if($_SERVER['REQUEST_METHOD'] != 'POST')
 {
-    //someone is calling the file directly, which we don't want
-    echo 'This file cannot be called directly.';
+    echo 'Reply To:';
+	echo $_GET['content'];
+	echo '<br>';		
+	echo '<form method="post" action="">
+	  <table class="form">
+        <tr>
+		<td>
+		<textarea name="reply-content"></textarea></td>
+		</tr>
+		
+		<tr>
+             <td colspan="2"> <input class="btn btn-blue" type="submit" value="Submit reply" /></td>
+	     </tr>
+		</table>
+		</form>';
 }
 else
 {
@@ -28,21 +46,27 @@ else
                           post_by)
                 VALUES ('" . $_POST['reply-content'] . "',
                         NOW(),
-                        " . mysql_real_escape_string($_GET['id']) . ",
+                        " . $conn->real_escape_string($_GET['id']) . ",
                         " . $_SESSION['user_id'] . ")";
                          
         $result = $conn->query($sql);
+		
+		$sql = 'UPDATE topics
+				SET topic_date=NOW()
+				WHERE topic_id=' . $conn->real_escape_string($_GET['id']) . '';
+				
+		$result2 = $conn->query($sql);
                          
-        if(!$result)
+        if(!$result && !$result2)
         {
             echo 'Your reply has not been saved, please try again later.';
         }
         else
         {
-            echo 'Your reply has been saved, check out <a href="topic.php?id=' . htmlentities($_GET['id']) . '">the topic</a>.';
+			header('Location: /divecompanion/forums/topic.php?id=' . $_GET['id'] . '');
         }
     }
 }
- 
+ echo '</div></div></div>';
 include '../footer.php';
 ?>

@@ -1,9 +1,14 @@
 <?php
+ob_start();
 //signin.php
 include '../header.php';
 include '../connect.php';
- 
-echo '<h3>Sign in</h3>';
+
+echo '<div class="grid_12">
+            <div class="box round first fullpage">
+                <h2>
+                Sign in</h2>
+                <div class="block ">';
 $conn = connect();
 //first, check if the user is already signed in. If that is the case, there is no need to display this page
 if(isset($_SESSION['signed_in']) && $_SESSION['signed_in'] == true)
@@ -16,10 +21,23 @@ else
     {
         /*the form hasn't been posted yet, display it
           note that the action="" will cause the form to post to the same page it is on */
+		   
         echo '<form method="post" action="">
-            Username: <input type="text" name="user_name" />
-            Password: <input type="password" name="user_pass">
-            <input type="submit" value="Sign in" />
+		<table class="form">
+          <tr>
+		  <td><label>Username</label></td>
+		  <td> <input class="medium" type="text" name="user_name" /></td>
+		  </tr>
+		  
+		  <tr>
+		  <td><label>Password</label></td>
+		  <td><input class="medium" type="password" name="user_pass"></td>
+		  </tr>
+		  
+		  <tr>
+             <td colspan="2" align="center"> <input class="btn btn-blue" type="submit" value="Sign in" /></td>
+	     </tr>
+	      </table>
          </form>';
     }
     else
@@ -43,13 +61,13 @@ else
          
         if(!empty($errors)) /*check for an empty array, if there are errors, they're in this array (note the ! operator)*/
         {
-            echo 'Uh-oh.. a couple of fields are not filled in correctly..';
+            echo '<div class="error">Uh-oh.. a couple of fields are not filled in correctly..';
             echo '<ul>';
             foreach($errors as $key => $value) /* walk through the array so all the errors get displayed */
             {
                 echo '<li>' . $value . '</li>'; /* this generates a nice error list */
             }
-            echo '</ul>';
+            echo '</ul></div>';
         }
         else
         {
@@ -102,6 +120,6 @@ else
         }
     }
 }
- 
+ echo '</div></div></div>';
 include '../footer.php';
 ?>

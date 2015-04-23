@@ -3,8 +3,17 @@ include '../connect.php';
 include '../header.php';
 
 $conn = connect();
+echo '<div class="grid_12">
+            <div class="box round first fullpage">
+                <h2>
+                  Sites</h2>
+                <div class="block ">';
+
 //diveSite.php is loaded with diveSite.php?id=? where ? represents the subsitenum.
 $escape = $conn->real_escape_string($_GET['id']);
+
+$sql = "UPDATE divelog set logNumber = logNumber+1 WHERE subSiteNum = $escape";
+$conn->query($sql);
 $sql = "SELECT
 			s.subSiteName,
 			s.siteInstruction,
@@ -55,7 +64,7 @@ else
 		else
 		{
 			$diveLog = $result->fetch_assoc();
-			echo '<table border="1">
+			echo '<table>
 					<tr>
 						<th>Temperature</th>
 						<th>Max Depth</th>
@@ -63,7 +72,7 @@ else
 						<th>Visibility</th>
 						<th>Date</th>
 					</tr>';
-			echo '<tr>
+			echo '<tr class="tdcenter">
 					<td>' . $diveLog['temperature'] . '</td>
 					<td>' . $diveLog['maxDepth'] . '</td>
 					<td>' . $diveLog['current'] . '</td>
@@ -87,7 +96,7 @@ else
 			echo $subSite['siteDetails'];
 	}
 }
-
+echo '</div></div></div>';
 include '../footer.php';
 
 ?>

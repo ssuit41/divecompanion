@@ -91,8 +91,8 @@ else
  Zip code: <input type="text" name="zip" value="<?php echo $zip ?>" readonly><br>
  Latitude: <input type="text" name="lat" value="<?php echo $lat ?>" readonly><br>
  Longitude: <input type="text" name="long" value="<?php echo $long ?>" readonly><br>
- Site instructions: <input type="text" name="siteInstruction" value="<?php echo $siteInstruction ?>" readonly><br>
- Site details: <input type="text" name="siteDetails" value="<?php echo $siteDetails ?>" readonly><br>
+ Site instructions: <textarea name="siteInstruction" rows="3" columns="40" readonly>"<?php echo $siteInstruction ?>"</textarea><br>
+ Site details: <textarea name="siteDetails" rows="3" columns="40" readonly>"<?php echo $siteDetails ?>"</textarea><br>
  <input type="hidden" name="subSiteNum" value="<?php echo $subSiteNum ?>">
  Use this dive site? <br>
  <input type="submit" name="confirm" value="Yes">

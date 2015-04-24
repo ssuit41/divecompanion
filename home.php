@@ -2,9 +2,9 @@
 //home.php
 include 'connect.php';
 include 'header.php';
-<<<<<<< HEAD
-=======
-
+//<<<<<<< HEAD
+//=======
+/*
 $conn = connect();
 echo '<h3>Recent Threads</h3>';
 //Shows the 5 most recent posts in the format of Cat Name - Topic w/ link including the time
@@ -89,8 +89,8 @@ else
 					  </tr>';
 			}
 			echo '</table>';
-}
->>>>>>> origin/master
+}*/
+//>>>>>>> origin/master
 
 
 $conn = connect();

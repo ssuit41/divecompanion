@@ -5,18 +5,19 @@ include '../header.php';
 include '../connect.php';
  
 $conn = connect();
-<<<<<<< HEAD
+//<<<<<<< HEAD
 	echo '<div class="grid_12">
             <div class="box round first fullpage">';
 if(isset($_GET['editid'])) echo '<h2>Edit Profile</h2>';
 else   echo '<h2>Sign up</h2>';
-=======
+//=======
 
-if(isset($_GET['editid'])) echo '<h3>Edit Profile</h3>';
-else   echo '<h3>Sign up</h3>';
->>>>>>> origin/master
+//>>>>>>> origin/master
 
     echo '<div class="block ">';
+  
+//<<<<<<< HEAD
+//=======
   if(isset($_GET['editid']))
   {
 	 $editid =  $_GET['editid'] ;
@@ -41,39 +42,13 @@ else   echo '<h3>Sign up</h3>';
 		}
   }
  
-<<<<<<< HEAD
-=======
-  if(isset($_GET['editid']))
-  {
-	 $editid =  $_GET['editid'] ;
-	 $sql = "SELECT * from users where user_id=$editid";
-	 $result = $conn->query($sql);
-         
-		if(!$result)
-			echo 'The profile information  could not be displayed, please try again later.' . $conn->error;
-		else
-		{ 
-		    while($row = $result->fetch_assoc())
-           {              
-            
-              $fname = $row['fname'];
-		      $lname = $row['lname'];
-			  $user  = $row['user_name'];
-			  $email = $row['user_email'];
-              $phone = $row['phno']; 
-          
-           }
-		
-		}
-  }
- 
->>>>>>> origin/master
+//>>>>>>> origin/master
  
   /*the form hasn't been posted yet, display it
       note that the action="" will cause the form to post to the same page it is on */
 if($_SERVER['REQUEST_METHOD'] != 'POST')
 {     ?>
-<<<<<<< HEAD
+
 
 <form method="post" action="">
 <input type="hidden" name="id" value="<?php if(isset($_GET['editid'])){ echo $editid ;}?>" >
@@ -110,7 +85,7 @@ if($_SERVER['REQUEST_METHOD'] != 'POST')
   </tr>
   
   <tr>
-    <td><label>Phone Numbar</label></td>
+    <td><label>Phone Number</label></td>
     <td> <input class="medium" type="tel" name="phone" value="<?php if(isset($_GET['editid'])){ echo  $phone;}?>"></td>
   </tr>
   
@@ -119,21 +94,7 @@ if($_SERVER['REQUEST_METHOD'] != 'POST')
   </tr>
   </table>
 </form>
-=======
-   
-    <form method="post" action="">
-         <input type="hidden" name="id" value="<?php if(isset($_GET['editid'])){ echo $editid ;}?>" >
-	    First Name : <input type="text" name="fname" value="<?php if(isset($_GET['editid'])){ echo  $fname;}?>"/> 
-		Last Name : <input type="text" name="lname" value="<?php if(isset($_GET['editid'])){ echo  $lname;}?>" /><br>
-        Username: <input type="text" name="user_name" value="<?php if(isset($_GET['editid'])){ echo  $user;}?>" /><br>
-        <?php if(!isset($_GET['editid'])){ ?>
-        Password: <input type="password" name="user_pass"><br>
-        Confirm Password: <input type="password" name="user_pass_check"><?php } ?><br>
-        E-mail: <input type="email" name="user_email" value="<?php if(isset($_GET['editid'])){ echo  $email;}?>"><br>
-		Phone Number : <input type="tel" name="phone" value="<?php if(isset($_GET['editid'])){ echo  $phone;}?>"><br>
-        <input type="submit" value="<?php if(isset($_GET['editid'])){ echo "Update"; }else { echo "Sign Up!";}?>" />
-     </form>
->>>>>>> origin/master
+
 <?php }
 else
 {
@@ -161,11 +122,11 @@ else
 			  
 		  }
 				
-<<<<<<< HEAD
+//<<<<<<< HEAD
      
-=======
+//=======
     
->>>>>>> origin/master
+//>>>>>>> origin/master
     if(isset($_POST['user_name']))
     {
         //the user name exists
@@ -199,11 +160,11 @@ else
      
     if(!empty($errors)) /*check for an empty array, if there are errors, they're in this array (note the ! operator)*/
     {
-<<<<<<< HEAD
+//<<<<<<< HEAD
         echo '<div class="error">Uh-oh.. a couple of fields are not filled in correctly..';
-=======
+//=======
         echo 'The following must be fixed';
->>>>>>> origin/master
+//>>>>>>> origin/master
         echo '<ul>';
         foreach($errors as $key => $value) /* walk through the array so all the errors get displayed */
         {

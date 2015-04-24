@@ -4,11 +4,11 @@
 function connect () {
 	$server = 'localhost';
 	$username   = 'root';
-<<<<<<< HEAD
+//<<<<<<< HEAD
 	$password   = '';
-=======
+//=======
 	$password   = 'nW9tZZeN8L9e4FQ2';
->>>>>>> origin/master
+//>>>>>>> origin/master
 	//$password   = ''; //for Claudius
 	$database   = 'exforum';
 	 

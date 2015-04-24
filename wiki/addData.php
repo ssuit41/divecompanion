@@ -25,15 +25,15 @@ else
 		//query user for dive site info
 		//only implemented by zip code right now
 		//need to add additional locator options, but will cascade changes to results.php
-<<<<<<< HEAD
+/*<<<<<<< HEAD
 		echo '<p align="center">
 			<form action="results.php" method="post">
 			Zip Code: <input type="text" name="zip" >
 			<input type="submit" value="Enter" />
 			</form>
 			</p>';
-=======
-		echo '<form action="results.php" method="get">
+=======*/
+		echo '<form action="results.php" method="post">
 			<table class="form">
           <tr>
 		  <td><label>Zip Code</label></td>
@@ -46,7 +46,7 @@ else
 	      </table>
 			</form>';
 			
->>>>>>> c38d97b6df29c639a8cea3308ec5b223619b0117
+//>>>>>>> c38d97b6df29c639a8cea3308ec5b223619b0117
 		
 	}
 }

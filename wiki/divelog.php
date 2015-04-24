@@ -4,6 +4,7 @@ include_once '../connect.php';
 include_once '../header.php';
 
 //database connection
+//Put error check for non posted page
 $conn = connect();
 echo '<div class="grid_12">
             <div class="box round first fullpage">
@@ -23,6 +24,8 @@ $siteInstruction = $_POST["siteInstruction"];
 $siteDetails = $_POST["siteDetails"];
 
 
+if(!(isset($_GET['id']) && $_GET['id'] == 'existing'))
+{
 //insert information into zipcode table
 $sql = "INSERT INTO zipcode( zipcode, city, state, latitude, longitude ) VALUES ('$zip', '$city', '$state', '$lat', '$long')";
 $conn->query($sql);
@@ -43,50 +46,21 @@ $diveSiteNum = mysqli_insert_id( $conn );
 $sql = "INSERT INTO divesitedetails( diveSiteNum, subSiteName, siteInstruction, siteDetails ) VALUES ( '$diveSiteNum', '$subSiteName', '$siteInstruction', '$siteDetails' )";
 $conn->query($sql);
 $subSiteNum = mysqli_insert_id( $conn );
-?>
-
-<<<<<<< HEAD
-<form action="divelogsuccess.php" method="post">
-<p align="left">
-Current:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-<input type="text" name="current">
-<br>
-Max Depth:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-<input type="text" name="depth">
-<br>
-Temperature:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-<input type="text" name="temperature">
-<br>
-Visibility:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-<input type="text" name="visibility">
-<br>
-<input type="hidden" name="subSiteNum" value="<?php echo $subSiteNum; ?>">
-<input type="submit" value="Enter">
-</p>
-</form>;
-<?php
-=======
-//query to obtain user_id
-//***NOT WORKING*** RETURNS ZERO? ALL DIVE LOGS ARE CREATED UNDER USER_ID 0
-$sql = "SELECT user_id FROM users WHERE user_name = '$username'";
-$result = $conn->query($sql);
-$row = $result->fetch_assoc();
-$userid = $row['user_id'];
+}
+else
+	if(isset($_POST["subSiteNum"]))
+		$subSiteNum = $_POST["subSiteNum"];
 
 //prompt user for input of dive log information
 //***NOTE*** PASSING OF USER_NAME AND USER_ID AS HIDDEN OBJECTS
-echo '<form action="divelogsuccess.php" method="get">
+echo '<form action="divelogsuccess.php" method="post">
 <table class="form">
           <tr>
 		  <td><label>Current</label></td>
 		  <td> <input class="medium" type="text" name="current" /></td>
 		  </tr>
 		  
-		  <tr>
-		  <td><label>Date</label></td>
-		  <td> <input class="medium" type="text" name="date" /></td>
-		  </tr>
-		  
+  
 		  <tr>
 		  <td><label>Max Depth</label></td>
 		  <td> <input class="medium" type="text" name="depth" /></td>
@@ -100,17 +74,13 @@ echo '<form action="divelogsuccess.php" method="get">
 		  <tr>
 		  <td><label>Visibility</label></td>
 		  <td> <input class="medium" type="text" name="visibility" /></td>
-		  </tr>
-		  <input type="hidden" id="username" name="username" value=$username>
-          <input type="hidden" id="userid" name="userid" value=$userid>
-     
-	      <tr>
+
              <td colspan="2" align="center"> <input class="btn btn-blue" type="submit" value="Enter" /></td>
 	     </tr>
 	      </table>
+		  <input type="hidden" name="subSiteNum" value=" ' . $subSiteNum . '">
         </form>';
 
->>>>>>> c38d97b6df29c639a8cea3308ec5b223619b0117
 
 echo '</div></div></div>';
 include_once '../footer.php';

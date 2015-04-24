@@ -49,7 +49,7 @@ else
 					divesitedetails d
 				LEFT JOIN divelog l ON d.subSiteNum = l.subSiteNum
 				WHERE d.subSiteNum = '$escape'
-				ORDER BY l.date";
+				ORDER BY l.date DESC";
 		$result = $conn->query($sql);
 		if(!$result)
 			echo 'There was an error in querying for the dive log' . $conn->error;
@@ -82,10 +82,10 @@ else
 				</table>';
 		}			
 		echo '<h1>Site Instructions</h1>';
-		if(!isset($subSite['siteInstructions']))
+		if(!isset($subSite['siteInstruction']))
 			echo 'No site instructions exist. Create new (insert link here)';
 		else
-			echo $subSite['siteInstructions'];
+			echo $subSite['siteInstruction'];
 		echo '<br><br>';
 		echo '<h1>Site Details</h1>';
 		if(!isset($subSite['siteDetails']))

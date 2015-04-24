@@ -8,6 +8,7 @@ $conn = connect();
 //select the dive site based on $_GET['id']
 $subSiteNum = $conn->real_escape_string($_GET['id']);
 $sql = "SELECT
+<<<<<<< HEAD
 			*
 			FROM
 				divesite
@@ -17,6 +18,15 @@ $sql = "SELECT
 				divesitedetails.diveSiteNum = divesite.diveSiteNum
 			WHERE
 				divesitedetails.subSiteNum = '$subSiteNum'";
+=======
+			addressNumber,
+			diveSiteNum,
+			zipCode
+		FROM
+			divesite
+		WHERE
+			divesite.diveSiteNum = '$escape'";
+>>>>>>> origin/master
 			
 $result = $conn->query($sql);
 
@@ -39,8 +49,26 @@ else
 		$diveSiteNum = $row['diveSiteNum'];
 		$addressnum = $row['addressNumber'];
 		$zip = $row['zipCode'];
+<<<<<<< HEAD
 		$siteDetails = $row['siteDetails'];
 		$siteInstruction = $row['siteInstruction'];
+=======
+
+		$sql = "SELECT
+			siteDetails,
+			siteInstruction,
+			subSiteName,
+			subSiteNum
+		FROM
+			divesitedetails
+		WHERE
+			divesitedetails.diveSiteNum = $diveSiteNum";
+		$result = $conn->query($sql);
+		$row = $result->fetch_assoc();
+		
+		$siteDetails = $row['siteDetails'];
+		$siteInstructions = $row['siteInstruction'];
+>>>>>>> origin/master
 		$subSiteNum = $row['subSiteNum'];
 		$subSiteName = $row['subSiteName'];
 

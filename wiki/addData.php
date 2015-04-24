@@ -8,7 +8,7 @@ if(!(isset($_SESSION['signed_in']) && $_SESSION['signed_in']))
 {
 	//user must be signed in
 	//possible upgrade to must be admin
-	echo 'Sorry, you have to be <a href="/forum/signin.php">signed in</a> to create a topic.';
+	echo 'Sorry, you have to be <a href="/divecompanion/users/signin.php">signed in</a> to create a topic.';
 }
 
 else

@@ -1,14 +1,22 @@
 <?php
+ob_start();
 //signup.php
 include '../header.php';
 include '../connect.php';
  
 $conn = connect();
+<<<<<<< HEAD
+	echo '<div class="grid_12">
+            <div class="box round first fullpage">';
+if(isset($_GET['editid'])) echo '<h2>Edit Profile</h2>';
+else   echo '<h2>Sign up</h2>';
+=======
 
 if(isset($_GET['editid'])) echo '<h3>Edit Profile</h3>';
 else   echo '<h3>Sign up</h3>';
+>>>>>>> origin/master
 
- 
+    echo '<div class="block ">';
   if(isset($_GET['editid']))
   {
 	 $editid =  $_GET['editid'] ;
@@ -33,11 +41,85 @@ else   echo '<h3>Sign up</h3>';
 		}
   }
  
+<<<<<<< HEAD
+=======
+  if(isset($_GET['editid']))
+  {
+	 $editid =  $_GET['editid'] ;
+	 $sql = "SELECT * from users where user_id=$editid";
+	 $result = $conn->query($sql);
+         
+		if(!$result)
+			echo 'The profile information  could not be displayed, please try again later.' . $conn->error;
+		else
+		{ 
+		    while($row = $result->fetch_assoc())
+           {              
+            
+              $fname = $row['fname'];
+		      $lname = $row['lname'];
+			  $user  = $row['user_name'];
+			  $email = $row['user_email'];
+              $phone = $row['phno']; 
+          
+           }
+		
+		}
+  }
+ 
+>>>>>>> origin/master
  
   /*the form hasn't been posted yet, display it
       note that the action="" will cause the form to post to the same page it is on */
 if($_SERVER['REQUEST_METHOD'] != 'POST')
 {     ?>
+<<<<<<< HEAD
+
+<form method="post" action="">
+<input type="hidden" name="id" value="<?php if(isset($_GET['editid'])){ echo $editid ;}?>" >
+  <table class="form">
+  <tr>
+    <td><label> First Name</label></td>
+    <td> <input class="medium" type="text" name="fname" value="<?php if(isset($_GET['editid'])){ echo  $fname;}?>"/></td>
+  </tr>
+   
+   <tr>
+    <td><label> Last Name</label></td>
+    <td><input class="medium" type="text" name="lname" value="<?php if(isset($_GET['editid'])){ echo  $lname;}?>" /></td>
+  </tr>
+   
+   <tr>
+    <td><label> Username</label></td>
+    <td> <input  class="medium" type="text" name="user_name" value="<?php if(isset($_GET['editid'])){ echo  $user;}?>" /></td>
+  </tr>
+   <?php if(!isset($_GET['editid'])){ ?>
+   <tr>
+    <td><label>Password</label></td>
+    <td><input class="medium" type="password" name="user_pass"></td>
+  </tr>
+  
+   <tr>
+    <td><label>Password again </label></td>
+    <td><input class="medium" type="password" name="user_pass_check"></td>
+  </tr>
+  <?php } ?>
+  
+   <tr>
+    <td><label>E-mail</label></td>
+    <td> <input class="medium" type="email" name="user_email" value="<?php if(isset($_GET['editid'])){ echo  $email;}?>"></td>
+  </tr>
+  
+  <tr>
+    <td><label>Phone Numbar</label></td>
+    <td> <input class="medium" type="tel" name="phone" value="<?php if(isset($_GET['editid'])){ echo  $phone;}?>"></td>
+  </tr>
+  
+  <tr>
+    <td colspan="2" align="center"> <input class="btn btn-blue" type="submit" value="<?php if(isset($_GET['editid'])){ echo "Update"; }else { echo "Sign Up!";}?>" /></td>
+  </tr>
+  </table>
+</form>
+=======
    
     <form method="post" action="">
          <input type="hidden" name="id" value="<?php if(isset($_GET['editid'])){ echo $editid ;}?>" >
@@ -51,6 +133,7 @@ if($_SERVER['REQUEST_METHOD'] != 'POST')
 		Phone Number : <input type="tel" name="phone" value="<?php if(isset($_GET['editid'])){ echo  $phone;}?>"><br>
         <input type="submit" value="<?php if(isset($_GET['editid'])){ echo "Update"; }else { echo "Sign Up!";}?>" />
      </form>
+>>>>>>> origin/master
 <?php }
 else
 {
@@ -78,7 +161,11 @@ else
 			  
 		  }
 				
+<<<<<<< HEAD
+     
+=======
     
+>>>>>>> origin/master
     if(isset($_POST['user_name']))
     {
         //the user name exists
@@ -112,13 +199,17 @@ else
      
     if(!empty($errors)) /*check for an empty array, if there are errors, they're in this array (note the ! operator)*/
     {
+<<<<<<< HEAD
+        echo '<div class="error">Uh-oh.. a couple of fields are not filled in correctly..';
+=======
         echo 'The following must be fixed';
+>>>>>>> origin/master
         echo '<ul>';
         foreach($errors as $key => $value) /* walk through the array so all the errors get displayed */
         {
             echo '<li>' . $value . '</li>'; /* this generates a nice error list */
         }
-        echo '</ul>';
+        echo '</ul></div>';
     }
     else
     {
@@ -170,6 +261,6 @@ else
         }
     }
 }
- 
+echo '</div></div></div>'; 
 include '../footer.php';
 ?>

@@ -1,6 +1,10 @@
 body {
     background-color: #b8dfd8;
+<<<<<<< HEAD
+   
+=======
     text-align: center;
+>>>>>>> origin/master
     overflow-x: hidden;
     /* make sure IE centers the page too */
 }
@@ -62,12 +66,14 @@ table a:hover {
 }
  
 th {
-    background-color: #00728B;
-    color: #F0F0F0;
+    background-color: #bdcbd9;
+    color: #fff;
+	padding: 10px;
 }
  
 td {
     padding: 5px;
+	
 }
  
 /* Begin font styles */
@@ -124,4 +130,29 @@ h3 {margin: 0; padding: 0;}
 textarea {
     width: 500px;
     height: 200px;
+}
+
+.cmp_name {
+    color: #fff;
+    margin-top: 10px;
+}
+.error {
+    border: 1px solid red;
+    color: red;
+    font-size: 15px;
+    padding: 10px;
+}
+textarea {
+    width: 653px;
+}
+.tdcenter td{ text-align:center;}
+.searchbar{margin-top:10px;}
+
+.slabel {
+    color: #fff;
+    font-weight: bold;
+    padding: 10px;
+}
+.head_searchbtn {
+    margin-left: 10px;
 }

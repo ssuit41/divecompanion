@@ -1,0 +1,16 @@
+DROP TABLE IF EXISTS ZipCode;
+CREATE TABLE ZipCode (
+	zipCode INTEGER NOT NULL,
+	city VARCHAR(40) NULL,
+	state VARCHAR(2) NULL,
+	latitude FLOAT NOT NULL,
+	longitude FLOAT NOT NULL,
+	PRIMARY KEY(zipCode));
+	
+INSERT INTO ZipCode VALUES (34480, "Ocala", "FL", 29.12, 82.09);
+INSERT INTO ZipCode VALUES (32643, "High Springs", "FL", 29.85, 82.65);
+INSERT INTO ZipCode VALUES (32696, "Williston", "FL", 29.41, 82.49);
+INSERT INTO ZipCode VALUES (32702, "Altoona", "FL", 29.04, 81.64);
+INSERT INTO ZipCode VALUES (32763, "Orange City", "FL", 28.94, 81.31);
+INSERT INTO ZipCode VALUES (33403, "Riviera Beach", "FL", 26.80, 80.08);
+INSERT INTO ZipCode VALUES (33062, "Pompano Beach", "FL", 26.24, 80.10);

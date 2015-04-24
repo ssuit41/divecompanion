@@ -1,5 +1,9 @@
 <?php
+<<<<<<< HEAD
+ob_start();
+=======
 //signup.php
+>>>>>>> origin/master
 include 'header.php';
 include 'connect.php';
 $conn = connect();
@@ -10,7 +14,15 @@ if(isset($_SESSION['signed_in']) && $_SESSION['signed_in'] == true)
    if(isset($_GET['msg'] )){
 	      echo "Record Sucessfully Updated..";
 	 }
+<<<<<<< HEAD
+   echo '<div class="grid_12">
+            <div class="box round first fullpage">
+                <h2>
+                  Profile Information</h2>
+                <div class="block ">';
+=======
     echo '<h3>Profile Information</h3>';
+>>>>>>> origin/master
 //Shows the 5 most recent posts in the format of Cat Name - Topic w/ link including the time
 $sql = "SELECT * from users where user_id=$userid";
 
@@ -34,7 +46,11 @@ else
                      
         while($row = $result->fetch_assoc())
         {              
+<<<<<<< HEAD
+            echo '<tr class="tdcenter">';
+=======
             echo '<tr>';
+>>>>>>> origin/master
             echo '<td>'. $row['fname'].  '</td>';
 			echo '<td>'. $row['lname'].  '</td>';
 			echo '<td>'. $row['user_name'].  '</td>';
@@ -46,6 +62,13 @@ else
            <?php echo '</tr>';
         }
 		echo '</table>';
+<<<<<<< HEAD
+		echo '</div></div></div></div>';
+    
+   }
+}
+else{header('Location:users/signup.php');exit;	}
+=======
     
    }
 }
@@ -54,5 +77,6 @@ else
   header('Location:users/signup.php');
   exit;	
 }
+>>>>>>> origin/master
 include('footer.php')
 ?>

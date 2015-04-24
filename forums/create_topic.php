@@ -5,8 +5,9 @@ include '../header.php';
  
 //generate the db connection
 $conn = connect();
- 
-echo '<h2>Create a topic</h2>';
+ echo '<div class="grid_12">
+            <div class="box round first fullpage"><h2>Create a topic</h2><div class="block ">'; 
+
 if(!(isset($_SESSION['signed_in']) && $_SESSION['signed_in']))
 {
     //the user is not signed in
@@ -51,18 +52,34 @@ else
             {
          
                 echo '<form method="post" action="">
-                    Subject: <input type="text" name="topic_subject" />
-                    Category:';
-                 
-                echo '<select name="topic_cat">';
+				      <table class="form">
+						  <tr>
+						  <td><label>Subject</label></td>
+						  <td> <input class="medium" type="text" name="topic_subject" /></td>
+						  </tr>
+				
+                           <tr>
+                            <td>
+                                <label>
+                                    Category</label>
+                            </td> ';
+                echo '<td><select   name="topic_cat">';
                     while($row = $result->fetch_assoc())
                     {
                         echo '<option value="' . $row['cat_id'] . '">' . $row['cat_name'] . '</option>';
                     }
-                echo '</select>';
+                echo '</select></td></tr>';
                      
-                echo 'Message: <textarea name="post_content" /></textarea>
-                    <input type="submit" value="Create topic" />
+                echo '<tr>
+                              <td>
+                                  <label> Message</label>
+                             </td>
+							 <td><textarea name="post_content" /></textarea></td>
+				      </tr>
+					  <tr>
+                           <td colspan="2" align="center"> <input class="btn btn-blue" type="submit" value="Create topic" /></td>
+	                    </tr>
+				  </table>
                  </form>';
             }
         }
@@ -140,6 +157,6 @@ else
         }
     }
 }
- 
+echo '</div></div></div>';
 include '../footer.php';
 ?>

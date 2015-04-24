@@ -1,0 +1,43 @@
+﻿Merge remote-tracking branch 'origin/master'
+
+Conflicts:
+	wiki/existingsite.php
+#
+# It looks like you may be committing a merge.
+# If this is not correct, please remove the file
+#	.git/MERGE_HEAD
+# and try again.
+
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch master
+# Your branch and 'origin/master' have diverged,
+# and have 1 and 15 different commits each, respectively.
+#   (use "git pull" to merge the remote branch into yours)
+#
+# All conflicts fixed but you are still merging.
+#
+# Changes to be committed:
+#	new file:   account.php
+#	modified:   connect.php
+#	new file:   data.sql
+#	deleted:    db.sql
+#	new file:   editprofile.php
+#	deleted:    exforum-2.sql
+#	modified:   forums/category.php
+#	modified:   forums/create_category.php
+#	modified:   forums/create_topic.php
+#	modified:   forums/forum.php
+#	modified:   forums/reply.php
+#	modified:   forums/topic.php
+#	modified:   header.php
+#	modified:   home.php
+#	new file:   homeAlt.php
+#	modified:   style.css
+#	modified:   users/signup.php
+#	modified:   wiki/addData.php
+#	modified:   wiki/diveSite.php
+#	modified:   wiki/existingsite.php
+#
+

@@ -5,7 +5,8 @@ include '../header.php';
 
 //generate the db connection
 $conn = connect();
-
+ echo '<div class="grid_12">
+            <div class="box round first fullpage">';
 //select the topic based on $_GET['id']
 $escape = $conn->real_escape_string($_GET['id']);
 $sql = "SELECT
@@ -32,11 +33,19 @@ else
 	{
 		//Display subject
 		$row = $result->fetch_assoc();
-		echo '<table border="1">
-			<tr>
-				<th colspan="2"> ' . $row['topic_subject'] . ' </th>
-			</tr>';
+		echo '
+				<h2> ' . $row['topic_subject'] . ' </h2>';
 			
+		echo '<div class="block ">';	
+		
+		echo '<table class="data display datatable" id="example">
+					<thead>
+						<tr>
+							 <th>Topic</th>
+							  <th>Last Post Time</th>
+						</tr>
+					</thead>
+					<tbody>';
 	//query for posts
 	$escape = $conn->real_escape_string($_GET['id']);
 	$sql = "SELECT
@@ -69,21 +78,32 @@ else
 		while($row = $result->fetch_assoc())
 		{
 			echo '<tr>';
+<<<<<<< HEAD
+				echo '<td>';
+					echo '' . $row['user_name'] . '</br>';
+=======
 				echo '<td class="rightpart">';
 					echo '<h3>' . $row['user_name'] . '</h3>';
+>>>>>>> origin/master
 					echo date('m-d-Y g:i A', strtotime($row['post_date']));
 				echo '</td>';
-				echo '<td class="leftpart">';
+				echo '<td>';
 					echo $row['post_content'];
 					if(isset($_SESSION['signed_in']) && $_SESSION['signed_in'])
+<<<<<<< HEAD
+						echo '<a href="reply.php?id=' . $row['post_topic'] . '&content=' . $row['post_content'] . '"></br> Reply </a>';
+=======
 						echo '<h3><a href="reply.php?id=' . $row['post_topic'] . '&content=' . $row['post_content'] . '"> Reply </a></h3>';
+>>>>>>> origin/master
 				echo '</td>';
 			echo '</tr>';
 		}
 	}
-	echo '</table>';
+	echo '</tbody></table>';
 	}
 }
+echo '</div></div></div> <div class="clear">
+        </div>';
 include '../footer.php';
 ?>
 					

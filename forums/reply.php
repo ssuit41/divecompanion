@@ -1,19 +1,37 @@
-<?php
-//create_cat.php
+<?php 
+ob_start();
 include '../connect.php';
 include '../header.php';
  
+//create_cat.php
 //generate the db connection
 $conn = connect();
- 
+ echo '<div class="grid_12">
+            <div class="box round first fullpage">
+                <h2>
+                 Replay</h2>
+                <div class="block ">';
 if($_SERVER['REQUEST_METHOD'] != 'POST')
 {
     echo 'Reply To:';
 	echo $_GET['content'];
 	echo '<br>';		
 	echo '<form method="post" action="">
+<<<<<<< HEAD
+	  <table class="form">
+        <tr>
+		<td>
+		<textarea name="reply-content"></textarea></td>
+		</tr>
+		
+		<tr>
+             <td colspan="2"> <input class="btn btn-blue" type="submit" value="Submit reply" /></td>
+	     </tr>
+		</table>
+=======
 		<textarea name="reply-content"></textarea>
 		<input type="submit" value="Submit reply" />
+>>>>>>> origin/master
 		</form>';
 }
 else
@@ -54,6 +72,6 @@ else
         }
     }
 }
- 
+ echo '</div></div></div>';
 include '../footer.php';
 ?>

@@ -6,7 +6,10 @@ include '../connect.php';
  
  //generate the db connection
 $conn = connect();
- 
+ echo '<div class="grid_12">
+            <div class="box round first fullpage">';
+              
+                
 //first select the category based on $_GET['cat_id']
 $escape = $conn->real_escape_string($_GET['id']);
 $sql = "SELECT
@@ -38,7 +41,7 @@ else
         {
             echo '<h2>Topics in ' . $row['cat_name'] . ' category</h2>';
         }
-     
+     echo '<div class="block ">';
         //do a query for the topics
 		$escape = $conn->real_escape_string($_GET['id']);
         $sql = "SELECT 
@@ -68,19 +71,34 @@ else
             else
             {
                 //prepare the table
+<<<<<<< HEAD
+                echo '<table class="data display datatable" id="example">
+					<thead>
+						<tr>
+							 <th>Topic</th>
+							  <th>Last Post Time</th>
+						</tr>
+					</thead>
+					<tbody>';
+=======
                 echo '<table border="1">
                       <tr>
                         <th>Topic</th>
                         <th>Last Post Time</th>
                       </tr>';
+>>>>>>> origin/master
                      
                 while($row = $result->fetch_assoc())
                 {              
                     echo '<tr>';
-                        echo '<td class="leftpart">';
-                            echo '<h3><a href="topic.php?id=' . $row['topic_id'] . '">' . $row['topic_subject'] . '</a><h3>';
+                        echo '<td>';
+                            echo '<a href="topic.php?id=' . $row['topic_id'] . '">' . $row['topic_subject'] . '</a>';
                         echo '</td>';
+<<<<<<< HEAD
+                        echo '<td>';
+=======
                         echo '<td class="rightpart">';
+>>>>>>> origin/master
 							echo date('m-d-Y g:i A', strtotime($row['topic_date']));
                         echo '</td>';
                     echo '</tr>';
@@ -91,6 +109,6 @@ else
         }
     }
 }
- 
+echo '</div></div></div>'; 
 include '../footer.php';
 ?>

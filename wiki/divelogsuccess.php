@@ -1,8 +1,12 @@
 <?php
-
 include_once '../connect.php';
 include_once '../header.php';
 
+echo '<div class="grid_12">
+            <div class="box round first fullpage">
+                <h2>
+                 </h2>
+                <div class="block ">';
 //database connection
 $conn = connect();
 
@@ -27,5 +31,6 @@ $conn->query($sql);
 //inform user of successful dive log creation
 echo '<p align=center>Dive Log entry successfully created!</p>';
 
+echo '</div></div></div>';
 include_once '../footer.php';
 ?>

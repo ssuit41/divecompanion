@@ -4,6 +4,11 @@ include_once '../connect.php';
 include_once '../header.php';
 
 $conn = connect();
+echo '<div class="grid_12">
+            <div class="box round first fullpage">
+                <h2>
+                Sign in</h2>
+                <div class="block ">';
 
 //select the dive site based on $_GET['id']
 $subSiteNum = $conn->real_escape_string($_GET['id']);
@@ -102,6 +107,7 @@ else
 		$city = $row['city'];	
 	}
 }
+<<<<<<< HEAD
 ?>
 
 <form action="divelog.php" method="post">
@@ -124,5 +130,8 @@ else
   </form>
 
 <?php
+=======
+echo "</div></div></div>";
+>>>>>>> c38d97b6df29c639a8cea3308ec5b223619b0117
 include_once '../footer.php';
 ?>

@@ -70,7 +70,7 @@ session_start();
                             <li><a href="/divecompanion/users/signout.php">Logout</a></li>
                            <?php   } else {?>
                            <li><a href="/divecompanion/users/signin.php">Log In</a></li>
-                            <li><a href="/divecompanion/users/signup.php">Sing Up</a></li>
+                            <li><a href="/divecompanion/users/signup.php">Sign Up</a></li>
                         <?php } ?>
                         </ul>
                         <br />

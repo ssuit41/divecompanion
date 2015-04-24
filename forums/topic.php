@@ -78,23 +78,15 @@ else
 		while($row = $result->fetch_assoc())
 		{
 			echo '<tr>';
-<<<<<<< HEAD
-				echo '<td>';
-					echo '' . $row['user_name'] . '</br>';
-=======
 				echo '<td class="rightpart">';
-					echo '<h3>' . $row['user_name'] . '</h3>';
->>>>>>> origin/master
+					echo '' . $row['user_name'] . '</br>';
 					echo date('m-d-Y g:i A', strtotime($row['post_date']));
 				echo '</td>';
 				echo '<td>';
 					echo $row['post_content'];
 					if(isset($_SESSION['signed_in']) && $_SESSION['signed_in'])
-<<<<<<< HEAD
 						echo '<a href="reply.php?id=' . $row['post_topic'] . '&content=' . $row['post_content'] . '"></br> Reply </a>';
-=======
-						echo '<h3><a href="reply.php?id=' . $row['post_topic'] . '&content=' . $row['post_content'] . '"> Reply </a></h3>';
->>>>>>> origin/master
+
 				echo '</td>';
 			echo '</tr>';
 		}

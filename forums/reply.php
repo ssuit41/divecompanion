@@ -13,11 +13,10 @@ $conn = connect();
                 <div class="block ">';
 if($_SERVER['REQUEST_METHOD'] != 'POST')
 {
-    echo 'Reply To:';
+    echo 'Reply To:<br>';
 	echo $_GET['content'];
 	echo '<br>';		
 	echo '<form method="post" action="">
-<<<<<<< HEAD
 	  <table class="form">
         <tr>
 		<td>
@@ -28,10 +27,6 @@ if($_SERVER['REQUEST_METHOD'] != 'POST')
              <td colspan="2"> <input class="btn btn-blue" type="submit" value="Submit reply" /></td>
 	     </tr>
 		</table>
-=======
-		<textarea name="reply-content"></textarea>
-		<input type="submit" value="Submit reply" />
->>>>>>> origin/master
 		</form>';
 }
 else

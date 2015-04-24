@@ -5,22 +5,12 @@ include '../header.php';
  
 //generate the db connection
 $conn = connect();
-//<<<<<<< HEAD
 echo '<div class="grid_12">
             <div class="box round first fullpage">
                 <h2>
-                  forums</h2>
+                  Forums</h2>
                 <div class="block ">';
-//=======
- /*
-$sql = "SELECT
-            cat_id,
-            cat_name,
-            cat_description
-        FROM
-            categories";
-	*/		
-//>>>>>>> origin/master
+
 $sql = "SELECT 
 			c.cat_id,
 			c.cat_name,
@@ -34,7 +24,8 @@ $sql = "SELECT
 		ON c.cat_id = t.topic_cat
 		WHERE t.topic_date IN (SELECT MAX(topic_date)
 								FROM topics
-								WHERE topic_cat = c.cat_id)";
+								WHERE topic_cat = c.cat_id)
+							OR t.topic_date IS NULL";
  
 $result = $conn->query($sql);
  
@@ -55,7 +46,7 @@ else
 					<thead>
 						<tr>
 							 <th>Category</th>
-							  <th>Last topic</th>
+							 <th>Last topic</th>
 						</tr>
 					</thead>
 					<tbody>';
@@ -66,13 +57,14 @@ else
                 echo '<td>';
                     echo '<a href="category.php?id=' . $row['cat_id'] . '">' . $row['cat_name'] . '</a></br>' . $row['cat_description'];
                 echo '</td>';
-//<<<<<<< HEAD
                 echo '<td>';
-//=======
-                echo '<td class="rightpart">';
-//>>>>>>> origin/master
-                echo '<a href="topic.php?id=' . $row['topic_id'] . '">' . $row['topic_subject'] . '</a> at <br>'; 
-				echo date('m-d-Y g:i A', strtotime($row['topic_date']));
+				if($row['topic_id'] != NULL)
+				{
+					echo '<a href="topic.php?id=' . $row['topic_id'] . '">' . $row['topic_subject'] . '</a> at <br>'; 
+					echo date('m-d-Y g:i A', strtotime($row['topic_date']));
+				}
+				else
+					echo 'No topics exist';
                 echo '</td>';
             echo '</tr>';
         }

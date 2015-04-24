@@ -7,7 +7,7 @@ $conn = connect();
 echo '<div class="grid_12">
             <div class="box round first fullpage">
                 <h2>
-                  Create Categoery</h2>
+                  Create Category</h2>
                 <div class="block ">';
 if(!(isset($_SESSION['signed_in']) && $_SESSION['signed_in']))
 {
@@ -46,7 +46,7 @@ else
 		
 		if(!$result)
 		{
-			echo 'An error occured while creating your category. Please try again laster.';
+			echo 'An error occurred while creating your category. Please try again later.' . $conn->error;
 		}
 		else
 		{
@@ -65,10 +65,11 @@ else
 			}
 			else
 			{
+				$catid = $conn->insert_id;
 				$sql = "COMMIT;";
 				$result = $conn->query($sql);
 				
-				echo 'You have successfully created <a href="category.php?id=' . mysqli_insert_id($conn) . '">your new category</a>';
+				echo 'You have successfully created <a href="category.php?id=' . $catid . '">your new category</a>';
 			}
 		}
 	}

@@ -38,11 +38,11 @@ else
 			
 		echo '<div class="block ">';	
 		
-		echo '<table class="data display datatable" id="example">
+		echo '<table class="data display datatable no-sort" id="example">
 					<thead>
 						<tr>
-							 <th>Topic</th>
-							  <th>Last Post Time</th>
+							 <th>User Information</th>
+							  <th>Posts</th>
 						</tr>
 					</thead>
 					<tbody>';
@@ -79,7 +79,7 @@ else
 		{
 			echo '<tr>';
 				echo '<td class="rightpart">';
-					echo '' . $row['user_name'] . '</br>';
+					echo '<a href="/divecompanion/account.php?id=' . $row['user_id'] . '">' . $row['user_name'] . '</a></br>';
 					echo date('m-d-Y g:i A', strtotime($row['post_date']));
 				echo '</td>';
 				echo '<td>';

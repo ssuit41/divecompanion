@@ -76,7 +76,7 @@ else
 				echo '<td class="leftpart">';
 					echo $row['post_content'];
 					if(isset($_SESSION['signed_in']) && $_SESSION['signed_in'])
-						echo '<h3><a href="reply.php?id=' . $row['post_topic'] . '&content=' . $row['post_content'] . '"> Reply </a></h3>';
+						echo '<a href="reply.php?id=' . $row['post_topic'] . '"> Reply </a>';
 				echo '</td>';
 			echo '</tr>';
 		}

@@ -89,7 +89,7 @@ else
             if(!$result)
             {
                 //something went wrong, display the error
-                echo 'Something went wrong while signing in. Please try again later.';
+                echo 'Something went wrong while signing in. Please try again later.' . $conn->error;
                 //echo mysql_error(); //debugging purposes, uncomment when needed
             }
             else

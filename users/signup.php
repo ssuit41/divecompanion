@@ -12,12 +12,9 @@ if(isset($_GET['editid'])) echo '<h2>Edit Profile</h2>';
 else   echo '<h2>Sign up</h2>';
 //=======
 
-//>>>>>>> origin/master
 
-    echo '<div class="block ">';
-  
-//<<<<<<< HEAD
-//=======
+
+  echo '<div class="block ">';
   if(isset($_GET['editid']))
   {
 	 $editid =  $_GET['editid'] ;
@@ -36,18 +33,15 @@ else   echo '<h2>Sign up</h2>';
 			  $user  = $row['user_name'];
 			  $email = $row['user_email'];
               $phone = $row['phno']; 
+			  $level = $row['user_level'];
           
            }
 		
 		}
   }
  
-//>>>>>>> origin/master
- 
-  /*the form hasn't been posted yet, display it
-      note that the action="" will cause the form to post to the same page it is on */
 if($_SERVER['REQUEST_METHOD'] != 'POST')
-{     ?>
+{  ?>
 
 
 <form method="post" action="">
@@ -89,9 +83,18 @@ if($_SERVER['REQUEST_METHOD'] != 'POST')
     <td> <input class="medium" type="tel" name="phone" value="<?php if(isset($_GET['editid'])){ echo  $phone;}?>"></td>
   </tr>
   
+     <?php if(isset($_SESSION['user_level']) && $_SESSION['user_level'] == 1){ ?>
+   <tr>
+    <td><label>User Rank (0 for Member or 1 for Admin)</label></td>
+    <td><input class="medium" type="integer" name="user_level" value="<?php if(isset($_GET['editid'])){ echo  $level;}?>"></td>
+  </tr>
+  <?php } ?>
+  
   <tr>
     <td colspan="2" align="center"> <input class="btn btn-blue" type="submit" value="<?php if(isset($_GET['editid'])){ echo "Update"; }else { echo "Sign Up!";}?>" /></td>
   </tr>
+  
+
   </table>
 </form>
 
@@ -121,12 +124,7 @@ else
 			}
 			  
 		  }
-				
-//<<<<<<< HEAD
-     
-//=======
-    
-//>>>>>>> origin/master
+
     if(isset($_POST['user_name']))
     {
         //the user name exists
@@ -157,14 +155,26 @@ else
 					$errors[] = 'The password field cannot be empty.';
 				}
 		   }
+		   
+	 if(isset($_SESSION['user_level']) && $_SESSION['user_level'] == 1){ 
+			if(isset($_POST['user_level']))
+				{
+					if(!($_POST['user_level'] == 0 || $_POST['user_level'] == 1))
+					{
+						$errors[] = 'The users level must be equal to 0 or 1.';
+					}
+				}
+				else
+				{
+					$errors[] = 'The user level field cannot be empty.';
+				}
+		   }
      
     if(!empty($errors)) /*check for an empty array, if there are errors, they're in this array (note the ! operator)*/
     {
-//<<<<<<< HEAD
+
         echo '<div class="error">Uh-oh.. a couple of fields are not filled in correctly..';
-//=======
         echo 'The following must be fixed';
-//>>>>>>> origin/master
         echo '<ul>';
         foreach($errors as $key => $value) /* walk through the array so all the errors get displayed */
         {
@@ -179,19 +189,21 @@ else
         //also notice the sha1 function which hashes the password
 		
 		if(!empty($_POST['id'])){
-			  $id = $_POST['id'];
+			 $id = $_POST['id'];
 			 $fname =  mysqli_real_escape_string($conn, $_POST['fname']);
 			 $lname =  mysqli_real_escape_string($conn, $_POST['lname']);
 			 $user  =  mysqli_real_escape_string($conn, $_POST['user_name']);
 			 $email =  mysqli_real_escape_string($conn, $_POST['user_email']);
 			 $phone =  mysqli_real_escape_string($conn, $_POST['phone']);
+			 $level =  mysqli_real_escape_string($conn, $_POST['user_level']);
 			 
 			     $sql = "UPDATE
                     users set fname = '$fname',
 					lname = '$lname',
 					user_name = '$user',
 					user_email = '$email',
-					phno = '$phone'  where user_id=$id";
+					phno = '$phone',
+					user_level = '$level'	where user_id=$id";
 					$result = $conn->query($sql);
 					header('Location:http://localhost/divecompanion/account.php?msg=update');
 					exit(); 

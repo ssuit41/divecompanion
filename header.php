@@ -39,7 +39,10 @@ session_start();
         $(document).ready(function () {
             setupLeftMenu();
 
-            $('.datatable').dataTable();
+            $('.datatable').dataTable(
+			{
+				"bSort": false
+			});
 			setSidebarHeight();
 
 
